@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="cache-control" content="no-cashe">
+	<title>Document</title>
+	<link rel="stylesheet" href="http://Techsite6/kaskad/css/currentParam-kotelnaya.css">
+</head>
+<#Refresh Content=60>
+
+	<body>
+		<div class="current-param">
+			<h1 class="current-param__title">
+				<span class="current-param__title-span">УТВХ</span>
+				Котлоагрегат №1
+			</h1>
+			<div class="current-param__box">
+				<span class="current-param__date">
+					<#Date>
+				</span>
+				<span class="current-param__time">
+					<#Time>
+				</span>
+			</div>
+		</div>
+
+		<div class="tables">
+			<table class="table">
+				<caption class="table__title">Текущие параметры</caption>
+				<thead class="table__thead">
+					<tr class="table__tr">
+						<th class="table__th">Наименование параметра</th>
+						<th class="table__th">Значение</th>
+					</tr>
+				</thead>
+				<tbody>
+					<!-- <tr class="table__tr">
+						<td class="table__td table__left">
+							Расход пара от котла, тонн
+						</td>
+						<td class="table__td table__right">
+							<#PasspValue PasspType=1 PasspID=8 Precision=1>
+						</td>
+					</tr> -->
+					<tr class="table__tr">
+						<td class="table__td table__left">
+							Давление пара на выходе, кгс/см2
+						</td>
+						<td class="table__td table__right">
+							<#PasspValue PasspType=1 PasspID=61 Precision=1>
+						</td>
+					</tr>
+					<tr class="table__tr">
+						<td class="table__td table__left">
+							Давление газа перед горелкой, кгс/см2
+						</td>
+						<td class="table__td table__right">
+							<#PasspValue PasspType=1 PasspID=60 Precision=0>
+						</td>
+					</tr>
+					<tr class="table__tr">
+						<td class="table__td table__left">
+							Давление воздуха перед горелкой, кгс/см2
+						</td>
+						<td class="table__td table__right">
+							<#PasspValue PasspType=1 PasspID=59 Precision=0>
+						</td>
+					</tr>
+					<tr class="table__tr">
+						<td class="table__td table__left">
+							Уровень в барабане котла, мм
+						</td>
+						<td class="table__td table__right">
+							<#PasspValue PasspType=1 PasspID=57 Precision=0>
+						</td>
+					</tr>
+					<tr class="table__tr">
+						<td class="table__td table__left">
+							Разрежение в топке котла, кгс/м2
+						</td>
+						<td class="table__td table__right">
+							<#PasspValue PasspType=1 PasspID=58 Precision=1>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</body>
+
+</html>

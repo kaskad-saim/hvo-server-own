@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="cache-control" content="no-cashe">
+	<title>Document</title>
+	<link rel="stylesheet" href="http://Techsite6/kaskad/css/currentParam-hvo.css">
+</head>
+<#Refresh Content=60>
+
+	<body>
+		<div class="current-param">
+			<h1 class="current-param__title">
+				<span class="current-param__title-span">УТВХ</span>
+				ХВО щит №2
+			</h1>
+			<div class="current-param__box">
+				<span class="current-param__date">
+					<#Date>
+				</span>
+				<span class="current-param__time">
+					<#Time>
+				</span>
+			</div>
+		</div>
+		<div class="tables">
+			<table class="table">
+				<caption class="table__title">Давления</caption>
+				<thead class="table__thead">
+					<tr class="table__tr">
+						<th class="table__th">Наименование параметра</th>
+						<th class="table__th">Значение, кгс/см2</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="table__tr">
+						<td class="table__td table__left">
+							Давление воды на карбон
+						</td>
+						<td class="table__td table__right">
+							<#PasspValue PasspType=1 PasspID=31 Precision=1>
+						</td>
+					</tr>
+					<tr class="table__tr">
+						<td class="table__td table__left">
+							Давление воды на к265
+						</td>
+						<td class="table__td table__right">
+							<#PasspValue PasspType=1 PasspID=32 Precision=0>
+						</td>
+					</tr>
+					<tr class="table__tr">
+						<td class="table__td table__left">
+							Давление воды на к312
+						</td>
+						<td class="table__td table__right">
+							<#PasspValue PasspType=1 PasspID=33 Precision=0>
+						</td>
+					</tr>
+					<tr class="table__tr">
+						<td class="table__td table__left">
+							Давление воды после фильтров Ф4/1,2,3
+						</td>
+						<td class="table__td table__right">
+							<#PasspValue PasspType=1 PasspID=39 Precision=0>
+						</td>
+					</tr>
+					<tr class="table__tr">
+						<td class="table__td table__left">
+							Давление воды после насоса Н4/1
+						</td>
+						<td class="table__td table__right">
+							<#PasspValue PasspType=1 PasspID=38 Precision=0>
+						</td>
+					</tr>
+					<tr class="table__tr">
+						<td class="table__td table__left">
+							Давление воды после насоса Н4/2
+						</td>
+						<td class="table__td table__right">
+							<#PasspValue PasspType=1 PasspID=40 Precision=0>
+						</td>
+					</tr>
+					<tr class="table__tr">
+						<td class="table__td table__left">
+							Давление воды после насоса Н5/1
+						</td>
+						<td class="table__td table__right">
+							<#PasspValue PasspType=1 PasspID=41 Precision=0>
+						</td>
+					</tr>
+					<tr class="table__tr">
+						<td class="table__td table__left">
+							Давление воды после насоса Н5/2
+						</td>
+						<td class="table__td table__right">
+							<#PasspValue PasspType=1 PasspID=42 Precision=0>
+						</td>
+					</tr>
+					<tr class="table__tr">
+						<td class="table__td table__left">
+							Давление воды после насоса Н6/1
+						</td>
+						<td class="table__td table__right">
+							<#PasspValue PasspType=1 PasspID=43 Precision=0>
+						</td>
+					</tr>
+					<tr class="table__tr">
+						<td class="table__td table__left">
+							Давление воды после насоса Н6/2
+						</td>
+						<td class="table__td table__right">
+							<#PasspValue PasspType=1 PasspID=44 Precision=0>
+						</td>
+					</tr>
+					<tr class="table__tr">
+						<td class="table__td table__left">
+							Давление воды после насоса Н6/3
+						</td>
+						<td class="table__td table__right">
+							<#PasspValue PasspType=1 PasspID=45 Precision=0>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<table class="table">
+				<caption class="table__title">Уровни</caption>
+				<thead class="table__thead">
+					<tr class="table__tr">
+						<th class="table__th">Наименование параметра</th>
+						<th class="table__th">Значение, мм</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="table__tr">
+						<td class="table__td table__left">
+							Уровень воды в E2/1 (Титан)
+						</td>
+						<td class="table__td table__right">
+							<#PasspValue PasspType=1 PasspID=26 Precision=1>
+						</td>
+					</tr>
+					<tr class="table__tr">
+						<td class="table__td table__left">
+							Уровень воды в E2/1 (Мида)
+						</td>
+						<td class="table__td table__right">
+							<#PasspValue PasspType=1 PasspID=27 Precision=0>
+						</td>
+					</tr>
+					<tr class="table__tr">
+						<td class="table__td table__left">
+							Уровень воды в E2/2 (Титан)
+						</td>
+						<td class="table__td table__right">
+							<#PasspValue PasspType=1 PasspID=28 Precision=0>
+						</td>
+					</tr>
+					<tr class="table__tr">
+						<td class="table__td table__left">
+							Уровень воды в E2/2 (Мида)
+						</td>
+						<td class="table__td table__right">
+							<#PasspValue PasspType=1 PasspID=29 Precision=0>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<table class="table">
+				<caption class="table__title">Расходы</caption>
+				<thead class="table__thead">
+					<tr class="table__tr">
+						<th class="table__th">Наименование параметра</th>
+						<th class="table__th">Значение, м3/ч</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="table__tr">
+						<td class="table__td table__left">
+							Расход умягченной воды после фильтров Ф4/1,2,3
+						</td>
+						<td class="table__td table__right">
+							<#PasspValue PasspType=1 PasspID=24 Precision=0>
+						</td>
+					</tr>
+					<tr class="table__tr">
+						<td class="table__td table__left">
+							Расход воды в канализацию
+						</td>
+						<td class="table__td table__right">
+							<#PasspValue PasspType=1 PasspID=25 Precision=0>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<table class="table">
+				<caption class="table__title">Работа насосов</caption>
+				<thead class="table__thead">
+					<tr class="table__tr">
+						<th class="table__th">Наименование параметра</th>
+						<th class="table__th">Значение</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="table__tr">
+						<td class="table__td table__left">
+							Рабочая частота насоса H4/1 (Гц)
+						</td>
+						<td class="table__td table__right">
+							<#PasspValue PasspType=1 PasspID=46 Precision=0>
+						</td>
+					</tr>
+					<tr class="table__tr">
+						<td class="table__td table__left">
+							Рабочая частота насоса H4/2 (Гц)
+						</td>
+						<td class="table__td table__right">
+							<#PasspValue PasspType=1 PasspID=47 Precision=0>
+						</td>
+					</tr>
+					<tr class="table__tr">
+						<td class="table__td table__left">
+							Рабочая частота насоса H5/1 (Гц)
+						</td>
+						<td class="table__td table__right">
+							<#PasspValue PasspType=1 PasspID=48 Precision=0>
+						</td>
+					</tr>
+					<tr class="table__tr">
+						<td class="table__td table__left">
+							Рабочая частота насоса H5/2 (Гц)
+						</td>
+						<td class="table__td table__right">
+							<#PasspValue PasspType=1 PasspID=49 Precision=0>
+						</td>
+					</tr>
+					<tr class="table__tr">
+						<td class="table__td table__left">
+							Рабочая частота насоса H6/1 (Гц)
+						</td>
+						<td class="table__td table__right">
+							<#PasspValue PasspType=1 PasspID=50 Precision=0>
+						</td>
+					</tr>
+					<tr class="table__tr">
+						<td class="table__td table__left">
+							Рабочая частота насоса H6/2 (Гц)
+						</td>
+						<td class="table__td table__right">
+							<#PasspValue PasspType=1 PasspID=51 Precision=0>
+						</td>
+					</tr>
+					<tr class="table__tr">
+						<td class="table__td table__left">
+							Рабочая частота насоса H6/3 (Гц)
+						</td>
+						<td class="table__td table__right">
+							<#PasspValue PasspType=1 PasspID=52 Precision=0>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<table class="table">
+				<caption class="table__title">Температуры</caption>
+				<thead class="table__thead">
+					<tr class="table__tr">
+						<th class="table__th">Наименование параметра</th>
+						<th class="table__th">Значение, &#176;С</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="table__tr">
+						<td class="table__td table__left">
+							Температура в емкости Е2/1 север
+						</td>
+						<td class="table__td table__right">
+							<#PasspValue PasspType=1 PasspID=34 Precision=0>
+						</td>
+					</tr>
+					<tr class="table__tr">
+						<td class="table__td table__left">
+							Температура в емкости Е2/1 юг
+						</td>
+						<td class="table__td table__right">
+							<#PasspValue PasspType=1 PasspID=35 Precision=0>
+						</td>
+					</tr>
+					<tr class="table__tr">
+						<td class="table__td table__left">
+							Температура в емкости Е2/2 север
+						</td>
+						<td class="table__td table__right">
+							<#PasspValue PasspType=1 PasspID=36 Precision=0>
+						</td>
+					</tr>
+					<tr class="table__tr">
+						<td class="table__td table__left">
+							Температура в емкости Е2/2 юг
+						</td>
+						<td class="table__td table__right">
+							<#PasspValue PasspType=1 PasspID=37 Precision=0>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<table class="table">
+				<caption class="table__title">Все остальное</caption>
+				<thead class="table__thead">
+					<tr class="table__tr">
+						<th class="table__th">Наименование параметра</th>
+						<th class="table__th">Значение</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="table__tr">
+						<td class="table__td table__left">
+							Измерение уровня воды на регулятор уровня
+						</td>
+						<td class="table__td table__right">
+							<#PasspValue PasspType=1 PasspID=55 Precision=0>
+						</td>
+					</tr>
+					<tr class="table__tr">
+						<td class="table__td table__left">
+							УПД №1 (Шкаф №1)
+						</td>
+						<td class="table__td table__right">
+							<#PasspValue PasspType=1 PasspID=53 Precision=0>
+						</td>
+					</tr>
+					<tr class="table__tr">
+						<td class="table__td table__left">
+							УПД №2 (Шкаф №2)
+						</td>
+						<td class="table__td table__right">
+							<#PasspValue PasspType=1 PasspID=54 Precision=0>
+						</td>
+					</tr>
+					<tr class="table__tr">
+						<td class="table__td table__left">
+							Контроль положения ИМ2
+						</td>
+						<td class="table__td table__right">
+							<#PasspValue PasspType=1 PasspID=30 Precision=0>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</body>
+
+</html>
