@@ -7,21 +7,7 @@ export class ModbusSimulator {
     // Карта устройств для быстрого доступа по deviceLabel
     this.devices = {
       // Существующие устройства
-      pechiVr: this.pechiVr,
-      sushilki: this.sushilki,
-      mpa: this.mpa,
-      mills: this.mills,
-      mill10b: this.mill10b,
-      reactor296: this.reactor296,
-
-      // Новые устройства
-      DE093: this.DE093,
-      DD972: this.DD972,
-      DD973: this.DD973,
-      DD576: this.DD576,
-      DD569: this.DD569,
-      DD923: this.DD923,
-      DD924: this.DD924,
+      kotel: this.kotel,
     };
   }
 
@@ -31,325 +17,33 @@ export class ModbusSimulator {
   }
 
   // Существующие объекты для каждого типа оборудования
-  pechiVr = {
-    temperatureAddressesList: [
-      0x0000, 0x0002, 0x0004, 0x0006, 0x0008, 0x0012, 0x000A, 0x000C, 0x004E, 0x000E, 0x0010, 0x004C, 0x0014, 0x0016
-    ],
-    pressureAddressesList: [
-      0x0026, 0x0028
-    ],
-    vacuumAddressesList: [
-      0x0020, 0x0022, 0x0024
-    ],
-    levelAddressesList: [
-      0x0018, 0x002A, 0x003E
+  kotel = {
+    parametersAddressesList: [
+      0x002C, 0x002E, 0x0030, 0x0032, 0x0034, 0x0036, 0x0038
     ],
     imAddressesList: [
-      0x0044, 0x0046, 0x0048, 0x004A, 0x001C
+      0x003A, 0x003C, 0x003E, 0x0040
     ],
-    gorelkaAddressesList: [
-      0x001A, 0x002E
+    infoAddressesList: [
+      0x0012, 0x0014, 0x0016, 0x0018, 0x001A, 0x001C, 0x001E,
+      0x0020, 0x0022, 0x0024, 0x0026, 0x0028, 0x002A
     ],
-    getRange(address, label = '') {
-      if (this.temperatureAddressesList.includes(address)) return { min: 0, max: 1500, step: 50 };
-      if (this.pressureAddressesList.includes(address)) return { min: 0, max: 30, step: 5 };
-      if (this.vacuumAddressesList.includes(address)) return { min: -20, max: 0, step: 5 };
-      if (this.levelAddressesList.includes(address)) {
-        if (label === 'В ванне скруббера') return { min: 0, max: 1000, step: 50 };
-        if (label === 'В емкости ХВО') return { min: 0, max: 6000, step: 100 };
-        return { min: -100, max: 100, step: 20 };
-      }
-      if (this.imAddressesList.includes(address)) return { min: 0, max: 1, step: 1 };
-      if (this.gorelkaAddressesList.includes(address)) return { min: 0, max: 100, step: 10 };
-      return { min: 0, max: 100, step: 10 }; // Значения по умолчанию
-    }
-  };
+    alarmsAddressesList: [
+      0x0000, 0x0002, 0x0004, 0x0006, 0x0008, 0x000A, 0x000C, 0x000E, 0x0010
+    ],
+    otherAddressesList: [
+      0x0042, 0x0044, 0x0046, 0x0048, 0x004A
+    ],
 
-  sushilki = {
-    temperatureAddressesList: [
-      0x0000, 0x0002, 0x0006
-    ],
-    vacuumAddressesList: [
-      0x000A, 0x000C, 0x000E
-    ],
-    imAddressesList: [
-      0x001E, 0x0020
-    ],
-    gorelkaAddressesList: [
-      0x0010, 0x0012, 0x0014
-    ],
-    getRange(address, label = '') {
-      if (this.temperatureAddressesList.includes(address)) return { min: 0, max: 600, step: 50 };
-      if (this.vacuumAddressesList.includes(address)) return { min: -20, max: 0, step: 5 };
-      if (this.imAddressesList.includes(address)) return { min: 0, max: 1, step: 1 };
-      if (this.gorelkaAddressesList.includes(address)) return { min: 0, max: 100, step: 10 };
-      return { min: 0, max: 100, step: 10 }; // Значения по умолчанию
-    }
-  };
-
-  mpa = {
-    temperatureAddressesList: [
-      0x0000, 0x0001, 0x0002, 0x0003, 0x0004, 0x0005, 0x0006, 0x0007, 0x0008, 0x0009, 0x000A, 0x000B, 0x000C, 0x000D, 0x000E, 0x000F
-    ],
-    pressureAddressesList: [
-      0x0010, 0x0011, 0x0012
-    ],
-    vacuumAddressesList: [
-      0x0012, 0x0010, 0x0011
-    ],
     getRange(address) {
-      if (this.temperatureAddressesList.includes(address)) return { min: 0, max: 1200, step: 50 };
-      if (this.pressureAddressesList.includes(address)) return { min: 0, max: 150, step: 5 };
-      if (this.vacuumAddressesList.includes(address)) return { min: -30, max: 0, step: 5 };
-      return { min: 0, max: 100, step: 10 }; // Значения по умолчанию
+      if (this.parametersAddressesList.includes(address)) return { min: 0, max: 100, step: 5 };
+      if (this.imAddressesList.includes(address)) return { min: 0, max: 100, step: 3 };
+      if (this.infoAddressesList.includes(address)) return { min: 0, max: 1, step: 1 };
+      if (this.otherAddressesList.includes(address)) return { min: 0, max: 1, step: 1 };
+      if (this.alarmsAddressesList.includes(address)) return { min: 0, max: 1, step: 1 };
     }
   };
 
-  mills = {
-    millAddressesList: [
-      0x0000, 0x0001, 0x0002
-    ],
-    getRange(address) {
-      if (this.millAddressesList.includes(address)) return { min: 0, max: 30, step: 1 };
-      return { min: 0, max: 100, step: 10 }; // Значения по умолчанию
-    }
-  };
-
-  mill10b = {
-    millAddressesList: [
-      0x0000, 0x0001, 0x0002, 0x0003, 0x0004, 0x0005, 0x0006, 0x0007, 0x0008
-    ],
-    getRange(address) {
-      if (this.millAddressesList.includes(address)) return { min: 0, max: 30, step: 1 };
-      return { min: 0, max: 100, step: 10 }; // Значения по умолчанию
-    }
-  };
-
-  reactor296 = {
-    temperatureAddressesList: [
-      0x0000, 0x0002, 0x0004, 0x0006
-    ],
-    levelAddressesList: [
-      0x0008, 0x000A, 0x000C, 0x000E
-    ],
-    getRange(address) {
-      if (this.temperatureAddressesList.includes(address)) return { min: 0, max: 100, step: 10 };
-      if (this.levelAddressesList.includes(address)) return { min: 0, max: 2500, step: 50 };
-      return { min: 0, max: 100, step: 10 }; // Значения по умолчанию
-    }
-  };
-
-  // Новые объекты для дополнительных устройств
-
-  // DE093
-  DE093 = {
-    addressesList: {
-      'Гкал/ч DE093': 0x0004,
-      'Температура DE093': 0x0006,
-      'Давление DE093': 0x0008,
-      'Куб/ч DE093': 0x000a,
-      'Тонн/ч DE093': 0x000c,
-      'Накопленно тонн DE093': 0x000e,
-    },
-    getRange(address) {
-      switch (address) {
-        case 0x0004: // Гкал/ч
-          return { min: 0, max: 10, step: 0.1 };
-        case 0x0006: // Температура
-          return { min: 0, max: 200, step: 1 };
-        case 0x0008: // Давление
-          return { min: 0, max: 5, step: 0.1 };
-        case 0x000a: // Куб/ч
-          return { min: 0, max: 1000, step: 10 };
-        case 0x000c: // Тонн/ч
-          return { min: 0, max: 2, step: 0.1 };
-        case 0x000e: // Накопленно тонн
-          return { min: 0, max: 100, step: 1 };
-        default:
-          return { min: 0, max: 100, step: 10 }; // Значения по умолчанию
-      }
-    }
-  };
-
-  // DD972
-  DD972 = {
-    addressesList: {
-      'Гкал/ч DD972': 0x0004,
-      'Температура DD972': 0x0006,
-      'Давление DD972': 0x0008,
-      'Куб/ч DD972': 0x000a,
-      'Тонн/ч DD972': 0x000c,
-      'Накопленно тонн DD972': 0x000e,
-    },
-    getRange(address) {
-      switch (address) {
-        case 0x0004: // Гкал/ч
-          return { min: 0, max: 10, step: 0.1 };
-        case 0x0006: // Температура
-          return { min: 0, max: 200, step: 1 };
-        case 0x0008: // Давление
-          return { min: 0, max: 5, step: 0.1 };
-        case 0x000a: // Куб/ч
-          return { min: 0, max: 1000, step: 10 };
-        case 0x000c: // Тонн/ч
-          return { min: 0, max: 2, step: 0.1 };
-        case 0x000e: // Накопленно тонн
-          return { min: 0, max: 100, step: 1 };
-        default:
-          return { min: 0, max: 100, step: 10 }; // Значения по умолчанию
-      }
-    }
-  };
-
-  // DD973
-  DD973 = {
-    addressesList: {
-      'Гкал/ч DD973': 0x0004,
-      'Температура DD973': 0x0006,
-      'Давление DD973': 0x0008,
-      'Куб/ч DD973': 0x000a,
-      'Тонн/ч DD973': 0x000c,
-      'Накопленно тонн DD973': 0x000e,
-    },
-    getRange(address) {
-      switch (address) {
-        case 0x0004: // Гкал/ч
-          return { min: 0, max: 10, step: 0.1 };
-        case 0x0006: // Температура
-          return { min: 0, max: 200, step: 1 };
-        case 0x0008: // Давление
-          return { min: 0, max: 5, step: 0.1 };
-        case 0x000a: // Куб/ч
-          return { min: 0, max: 1000, step: 10 };
-        case 0x000c: // Тонн/ч
-          return { min: 0, max: 2, step: 0.1 };
-        case 0x000e: // Накопленно тонн
-          return { min: 0, max: 100, step: 1 };
-        default:
-          return { min: 0, max: 100, step: 10 }; // Значения по умолчанию
-      }
-    }
-  };
-
-  // DD576
-  DD576 = {
-    addressesList: {
-      'Гкал/ч DD576': 0x0004,
-      'Температура DD576': 0x0006,
-      'Давление DD576': 0x0008,
-      'Куб/ч DD576': 0x000a,
-      'Тонн/ч DD576': 0x000c,
-      'Накопленно тонн DD576': 0x000e,
-    },
-    getRange(address) {
-      switch (address) {
-        case 0x0004: // Гкал/ч
-          return { min: 0, max: 10, step: 0.1 };
-        case 0x0006: // Температура
-          return { min: 0, max: 200, step: 1 };
-        case 0x0008: // Давление
-          return { min: 0, max: 5, step: 0.1 };
-        case 0x000a: // Куб/ч
-          return { min: 0, max: 1000, step: 10 };
-        case 0x000c: // Тонн/ч
-          return { min: 0, max: 2, step: 0.1 };
-        case 0x000e: // Накопленно тонн
-          return { min: 0, max: 100, step: 1 };
-        default:
-          return { min: 0, max: 100, step: 10 }; // Значения по умолчанию
-      }
-    }
-  };
-
-  // DD569
-  DD569 = {
-    addressesList: {
-      'Гкал/ч DD569': 0x0004,
-      'Температура DD569': 0x0006,
-      'Давление DD569': 0x0008,
-      'Куб/ч DD569': 0x000a,
-      'Тонн/ч DD569': 0x000c,
-      'Накопленно тонн DD569': 0x000e,
-    },
-    getRange(address) {
-      switch (address) {
-        case 0x0004: // Гкал/ч
-          return { min: 0, max: 10, step: 0.1 };
-        case 0x0006: // Температура
-          return { min: 0, max: 200, step: 1 };
-        case 0x0008: // Давление
-          return { min: 0, max: 5, step: 0.1 };
-        case 0x000a: // Куб/ч
-          return { min: 0, max: 1000, step: 10 };
-        case 0x000c: // Тонн/ч
-          return { min: 0, max: 2, step: 0.1 };
-        case 0x000e: // Накопленно тонн
-          return { min: 0, max: 100, step: 1 };
-        default:
-          return { min: 0, max: 100, step: 10 }; // Значения по умолчанию
-      }
-    }
-  };
-
-  // DD923
-  DD923 = {
-    addressesList: {
-      'Гкал/ч DD923': 0x0004,
-      'Температура DD923': 0x0006,
-      'Давление DD923': 0x0008,
-      'Куб/ч DD923': 0x000a,
-      'Тонн/ч DD923': 0x000c,
-      'Накопленно тонн DD923': 0x000e,
-    },
-    getRange(address) {
-      switch (address) {
-        case 0x0004: // Гкал/ч
-          return { min: 0, max: 10, step: 0.1 };
-        case 0x0006: // Температура
-          return { min: 0, max: 200, step: 1 };
-        case 0x0008: // Давление
-          return { min: 0, max: 5, step: 0.1 };
-        case 0x000a: // Куб/ч
-          return { min: 0, max: 1000, step: 10 };
-        case 0x000c: // Тонн/ч
-          return { min: 0, max: 2, step: 0.1 };
-        case 0x000e: // Накопленно тонн
-          return { min: 0, max: 100, step: 1 };
-        default:
-          return { min: 0, max: 100, step: 10 }; // Значения по умолчанию
-      }
-    }
-  };
-
-  // DD924
-  DD924 = {
-    addressesList: {
-      'Гкал/ч DD924': 0x0004,
-      'Температура DD924': 0x0006,
-      'Давление DD924': 0x0008,
-      'Куб/ч DD924': 0x000a,
-      'Тонн/ч DD924': 0x000c,
-      'Накопленно тонн DD924': 0x000e,
-    },
-    getRange(address) {
-      switch (address) {
-        case 0x0004: // Гкал/ч
-          return { min: 0, max: 10, step: 0.1 };
-        case 0x0006: // Температура
-          return { min: 0, max: 200, step: 1 };
-        case 0x0008: // Давление
-          return { min: 0, max: 5, step: 0.1 };
-        case 0x000a: // Куб/ч
-          return { min: 0, max: 1000, step: 10 };
-        case 0x000c: // Тонн/ч
-          return { min: 0, max: 2, step: 0.1 };
-        case 0x000e: // Накопленно тонн
-          return { min: 0, max: 100, step: 1 };
-        default:
-          return { min: 0, max: 100, step: 10 }; // Значения по умолчанию
-      }
-    }
-  };
 
   // Метод для чтения значений с учётом объекта и диапазона
   async readFloat(deviceID, address, deviceLabel = '') {
