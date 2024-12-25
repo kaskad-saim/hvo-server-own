@@ -153,7 +153,7 @@ const startDataRetrieval = async () => {
         // Опрос всех устройств на порту через очередь
         await pollDevices(devices, client, port);
       } catch (err) {
-        logger.error(`Ошибка при опросе данных на порту ${port}:`, err);
+        // logger.error(`Ошибка при опросе данных на порту ${port}:`, err);
       }
     };
 
