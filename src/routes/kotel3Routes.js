@@ -56,7 +56,7 @@ router.get('/kotel3-data', async (req, res) => {
 
 // Функция для замены всех значений в объекте на прочерк
 const mapValuesToDash = (obj) => {
-  return Object.fromEntries(Object.keys(obj).map((key) => [key, '-']));
+  return Object.fromEntries(Object.keys(obj).map((key) => [key, '—']));
 };
 
 export default router;

@@ -25,7 +25,9 @@ const port = process.env.PORT || 3002;
 // Определяем, использовать ли симулятор или реальный ModbusClient
 const isProduction = process.env.NODE_ENV === 'production';
 const Client = isProduction ? ModbusClient : ModbusSimulator;
+const host = isProduction ? process.env.PRODUCTION_HOST : 'localhost';
 logger.info(`Используется ${isProduction ? 'ModbusClient' : 'ModbusSimulator'}`);
+logger.info(`Сервер будет запущен на ${isProduction ? 'производственном' : 'локальном'} хосте: ${host}`);
 
 // Создаем приложение Express
 const app = express();
@@ -34,8 +36,8 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Настройка статической папки
-app.use(express.static(path.join(__dirname, '../public')));
+// Настройка статической папки до слияния с react
+// app.use(express.static(path.join(__dirname, '../public')));
 
 // Маршруты для страниц
 app.use('/', pageRoutes);
@@ -183,7 +185,15 @@ app.get('/config.js', (req, res) => {
   res.send(`window.NODE_ENV = "${process.env.NODE_ENV}";`);
 });
 
+// Настройка статической папки после слияния с react
+app.use(express.static(path.join(__dirname, './build')));
+
+// Для всех остальных маршрутов отправляем index.html
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, './build/index.html'));
+});
+
 // Запуск сервера
-app.listen(port, () => {
-  logger.info(`Сервер запущен на http://localhost:${port}`);
+app.listen(port, host, () => {
+  logger.info(`Сервер запущен на http://${host}:${port}`);
 });
