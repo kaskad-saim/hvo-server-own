@@ -11,6 +11,7 @@ import pageRoutes from './routes/pageRoutes.js';
 import kotel1Routes from './routes/kotel1Routes.js';
 import kotel2Routes from './routes/kotel2Routes.js';
 import kotel3Routes from './routes/kotel3Routes.js';
+import graphicRoutes from './routes/graphicRoutes.js'
 import { connectDB } from './services/dataBaseService.js';
 import { devicesConfig } from './services/devicesConfig.js';
 
@@ -22,12 +23,31 @@ const __dirname = path.dirname(__filename);
 dotenv.config();
 const port = process.env.PORT || 3002;
 
-// Определяем, использовать ли симулятор или реальный ModbusClient
-const isProduction = process.env.NODE_ENV === 'production';
-const Client = isProduction ? ModbusClient : ModbusSimulator;
-const host = isProduction ? process.env.PRODUCTION_HOST : 'localhost';
-logger.info(`Используется ${isProduction ? 'ModbusClient' : 'ModbusSimulator'}`);
-logger.info(`Сервер будет запущен на ${isProduction ? 'производственном' : 'локальном'} хосте: ${host}`);
+// Определяем хост и тип клиента в зависимости от NODE_ENV
+let host;
+let Client;
+
+switch (process.env.NODE_ENV) {
+  case 'development':
+    host = 'localhost';
+    Client = ModbusSimulator;
+    break;
+  case 'testing':
+    host = '169.254.6.19';
+    Client = ModbusSimulator;
+    break;
+  case 'production':
+    host = '169.254.0.166';
+    Client = ModbusClient;
+    break;
+  default:
+    host = 'localhost';
+    Client = ModbusSimulator;
+    break;
+}
+
+logger.info(`Используется ${Client === ModbusClient ? 'ModbusClient' : 'ModbusSimulator'}`);
+logger.info(`Сервер будет запущен на хосте: ${host}`);
 
 // Создаем приложение Express
 const app = express();
@@ -174,6 +194,7 @@ startDataRetrieval();
 app.use('/api', kotel1Routes);
 app.use('/api', kotel2Routes);
 app.use('/api', kotel3Routes);
+app.use('/api', graphicRoutes); //api получасовых графиков
 
 app.get('/api/server-time', (req, res) => {
   res.json({ time: new Date().toISOString() });
