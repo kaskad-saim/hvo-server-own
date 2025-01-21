@@ -11,6 +11,10 @@ import pageRoutes from './routes/pageRoutes.js';
 import kotel1Routes from './routes/kotel1Routes.js';
 import kotel2Routes from './routes/kotel2Routes.js';
 import kotel3Routes from './routes/kotel3Routes.js';
+import hvo1Routes from './routes/hvo1Routes.js';
+import hvo2Routes from './routes/hvo2Routes.js';
+
+
 import graphicRoutes from './routes/graphicRoutes.js'
 import { connectDB } from './services/dataBaseService.js';
 import { devicesConfig } from './services/devicesConfig.js';
@@ -194,6 +198,8 @@ startDataRetrieval();
 app.use('/api', kotel1Routes);
 app.use('/api', kotel2Routes);
 app.use('/api', kotel3Routes);
+app.use('/api', hvo1Routes);
+app.use('/api', hvo2Routes);
 app.use('/api', graphicRoutes); //api получасовых графиков
 
 app.get('/api/server-time', (req, res) => {
