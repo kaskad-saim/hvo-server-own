@@ -46,7 +46,7 @@ export const readDataHvo2 = async (modbusClient, deviceID, deviceLabel) => {
 
     // Сохранение данных в базу данных
     await new Hvo2Model(formattedDataHvo2).save();
-    console.log(formattedDataHvo2);
+    // console.log(formattedDataHvo2);
   } catch (err) {
     console.error(`[${deviceLabel}] Ошибка при чтении данных:`, err);
   }

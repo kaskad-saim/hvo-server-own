@@ -136,7 +136,7 @@ const pollDevices = async (devices, client, port) => {
         try {
           if (!client.isConnected) await client.safeReconnect();
           await readDataFunction(client, deviceID, deviceLabel);
-          logger.info(`[${deviceLabel}] Устройство успешно опрошено.`);
+          // logger.info(`[${deviceLabel}] Устройство успешно опрошено.`);
           return { deviceLabel, success: true };
         } catch (err) {
           logger.error(`[${deviceLabel}] Ошибка при опросе устройства:`, err);
