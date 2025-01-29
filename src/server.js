@@ -213,11 +213,11 @@ app.get('/config.js', (req, res) => {
 });
 
 // Настройка статической папки после слияния с react
-app.use(express.static(path.join(__dirname, './build')));
+app.use(express.static(path.join(__dirname, '../../react-project-utvh/build/')));
 
 // Для всех остальных маршрутов отправляем index.html
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, './build/index.html'));
+  res.sendFile(path.join(__dirname, '../../react-project-utvh/build/index.html'));
 });
 
 // Запуск сервера
